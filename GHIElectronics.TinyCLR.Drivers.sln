@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27703.2035
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29409.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GHIElectronics.TinyCLR.Drivers.Sitronix.ST7735", "Sitronix\ST7735\GHIElectronics.TinyCLR.Drivers.Sitronix.ST7735.csproj", "{D945E7ED-82F5-4768-A41F-0EF0220E6BA6}"
 EndProject
@@ -9,13 +9,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GHIElectronics.TinyCLR.Driv
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GHIElectronics.TinyCLR.Drivers.SolomonSystech.SSD1306", "SolomonSystech\SSD1306\GHIElectronics.TinyCLR.Drivers.SolomonSystech.SSD1306.csproj", "{95DE8D49-631E-41EB-90F7-B53768803FE6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GHIElectronics.TinyCLR.Drivers.STMicroelectronics.SPWF04Sx", "STMicroelectronics\SPWF04Sx\GHIElectronics.TinyCLR.Drivers.STMicroelectronics.SPWF04Sx.csproj", "{365C4668-89FB-429C-B90B-D80AF6CF9B9D}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GHIElectronics.TinyCLR.Drivers.TexasInstruments.CD4017B", "TexasInstruments\CD4017B\GHIElectronics.TinyCLR.Drivers.TexasInstruments.CD4017B\GHIElectronics.TinyCLR.Drivers.TexasInstruments.CD4017B.csproj", "{620771FC-4F70-42E5-BEB4-B69C8FCD6617}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GHIElectronics.TinyCLR.Drivers.TexasInstruments.SNx4HC595", "TexasInstruments\SNx4HC595\GHIElectronics.TinyCLR.Drivers.TexasInstruments.SNx4HC595\GHIElectronics.TinyCLR.Drivers.TexasInstruments.SNx4HC595.csproj", "{5657EA06-0A3C-4F9A-AA96-7808D471FE27}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GHIElectronics.TinyCLR.Drivers.FocalTech.FT5xx6", "FocalTech\FT5xx6\GHIElectronics.TinyCLR.Drivers.FocalTech.FT5xx6.csproj", "{82A2F5B0-4073-4B98-845D-AE7C5A925BE8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GHIElectronics.TinyCLR.Drivers.Microchip.Winc15x0", "Microchip\Winc15x0\GHIElectronics.TinyCLR.Drivers.Microchip.Winc15x0\GHIElectronics.TinyCLR.Drivers.Microchip.Winc15x0.csproj", "{0A494884-352C-4849-9A59-22AA41E378DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GHIElectronics.TinyCLR.Drivers.Omnivision.Ov9655", "Omnivision\Ov9655\GHIElectronics.TinyCLR.Drivers.Omnivision.Ov9655\GHIElectronics.TinyCLR.Drivers.Omnivision.Ov9655.csproj", "{BE8ECB57-A641-4F79-A862-FB47B55078DF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +37,6 @@ Global
 		{95DE8D49-631E-41EB-90F7-B53768803FE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{95DE8D49-631E-41EB-90F7-B53768803FE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{95DE8D49-631E-41EB-90F7-B53768803FE6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{365C4668-89FB-429C-B90B-D80AF6CF9B9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{365C4668-89FB-429C-B90B-D80AF6CF9B9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{365C4668-89FB-429C-B90B-D80AF6CF9B9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{365C4668-89FB-429C-B90B-D80AF6CF9B9D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{620771FC-4F70-42E5-BEB4-B69C8FCD6617}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{620771FC-4F70-42E5-BEB4-B69C8FCD6617}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{620771FC-4F70-42E5-BEB4-B69C8FCD6617}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -51,6 +49,14 @@ Global
 		{82A2F5B0-4073-4B98-845D-AE7C5A925BE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{82A2F5B0-4073-4B98-845D-AE7C5A925BE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{82A2F5B0-4073-4B98-845D-AE7C5A925BE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A494884-352C-4849-9A59-22AA41E378DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A494884-352C-4849-9A59-22AA41E378DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A494884-352C-4849-9A59-22AA41E378DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A494884-352C-4849-9A59-22AA41E378DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE8ECB57-A641-4F79-A862-FB47B55078DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE8ECB57-A641-4F79-A862-FB47B55078DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE8ECB57-A641-4F79-A862-FB47B55078DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE8ECB57-A641-4F79-A862-FB47B55078DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
