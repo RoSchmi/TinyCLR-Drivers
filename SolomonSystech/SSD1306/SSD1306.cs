@@ -1,24 +1,17 @@
-using System;
-using GHIElectronics.TinyCLR.Devices.Display;
-using GHIElectronics.TinyCLR.Devices.Display.Provider;
 using GHIElectronics.TinyCLR.Devices.I2c;
 
 namespace GHIElectronics.TinyCLR.Drivers.SolomonSystech.SSD1306 {
-    public class SSD1306Controller : IDisplayControllerProvider {
+    public class SSD1306Controller {
         private readonly byte[] vram = new byte[128 * 64 / 8 + 1];
         private readonly byte[] buffer2 = new byte[2];
         private readonly I2cDevice i2c;
 
-        public DisplayDataFormat DataFormat => DisplayDataFormat.VerticalByteStrip1Bpp;
         public int Width => 128;
         public int Height => 64;
 
-        public int MaxWidth => 128;
-        public int MaxHeight => 64;
-
         public static I2cConnectionSettings GetConnectionSettings() => new I2cConnectionSettings(0x3C) {
             AddressFormat = I2cAddressFormat.SevenBit,
-            BusSpeed = 100000,
+            BusSpeed = 400000,
         };
 
         public SSD1306Controller(I2cDevice i2c) {
@@ -67,42 +60,42 @@ namespace GHIElectronics.TinyCLR.Drivers.SolomonSystech.SSD1306 {
 
         public void Dispose() => this.i2c.Dispose();
 
-        public void SendCommand(byte cmd) {
+        private void SendCommand(byte cmd) {
             this.buffer2[1] = cmd;
             this.i2c.Write(this.buffer2);
         }
 
         public void SetColorFormat(bool invert) => this.SendCommand((byte)(invert ? 0xA7 : 0xA6));
 
-        public void DrawBuffer(byte[] buffer) => this.DrawBuffer(buffer, 0);
+        public void SetPixel(int x, int y, bool color) {
+            if (x < 0 || y < 0 || x >= this.Width || y >= this.Height) return;
 
-        public void DrawBuffer(byte[] buffer, int offset) {
-            Array.Copy(buffer, offset, this.vram, 1, this.vram.Length - 1);
+            var index = (y / 8) * this.Width + x;
+
+            if (color) {
+                this.vram[1 + index] |= (byte)(1 << (y % 8));
+            }
+            else {
+                this.vram[1 + index] &= (byte)(~(1 << (y % 8)));
+            }
+        }
+
+        public void DrawBuffer(byte[] buffer) {
+            var x = 0;
+            var y = 0;
+
+            for (var i = 0; i < buffer.Length; i += 2) {
+                var color = (buffer[i + 1] << 8) | (buffer[i]);
+
+                this.SetPixel(x++, y, color != 0);
+
+                if (x == this.Width) {
+                    x = 0;
+                    y++;
+                }
+            }
 
             this.i2c.Write(this.vram);
-        }
-
-        DisplayInterface IDisplayControllerProvider.Interface => DisplayInterface.I2c;
-        DisplayDataFormat[] IDisplayControllerProvider.SupportedDataFormats => new[] { DisplayDataFormat.VerticalByteStrip1Bpp };
-
-        void IDisplayControllerProvider.Enable() {
-
-        }
-
-        void IDisplayControllerProvider.Disable() => throw new NotSupportedException();
-
-        void IDisplayControllerProvider.DrawString(string value) => throw new NotSupportedException();
-        void IDisplayControllerProvider.DrawPixel(int x, int y, long color) => throw new NotSupportedException();
-
-        void IDisplayControllerProvider.SetConfiguration(DisplayControllerSettings configuration) {
-
-        }
-
-        void IDisplayControllerProvider.DrawBuffer(int targetX, int targetY, int sourceX, int sourceY, int width, int height, int originalWidth, byte[] data, int offset) {
-            if (targetX != 0 || targetY != 0 || width != this.Width || height != this.Height || sourceX != 0 || sourceY != 0)
-                throw new NotSupportedException();
-
-            this.DrawBuffer(data, offset);
         }
     }
 }
